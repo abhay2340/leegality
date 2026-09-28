@@ -2,8 +2,8 @@
 
 An Amazon-style product listing and detail app built on the [DummyJSON Products API](https://dummyjson.com/docs/products).
 
-- **Demo:** _add deployed URL here_
-- **Repository:** _add GitHub URL here_
+- **Demo:** https://animated-bienenstitch-81f90b.netlify.app/products
+- **Repository:** https://github.com/abhay2340/leegality
 
 | Screen | Route |
 | --- | --- |
