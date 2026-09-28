@@ -1,0 +1,265 @@
+/* ─── Carousel Root ──────────────────────────────────────────────────────── */
+.carousel-root {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  user-select: none;
+}
+
+/* ─── Main Viewport ──────────────────────────────────────────────────────── */
+.carousel-viewport {
+  position: relative;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid var(--shop-border);
+  border-radius: 20px;
+  height: 480px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: border-color 0.25s;
+}
+
+.carousel-viewport:hover {
+  border-color: color-mix(in srgb, var(--shop-accent) 35%, var(--shop-border));
+}
+
+/* ─── Image wrapper — zoom is scoped here only ───────────────────────────── */
+.carousel-img-wrapper {
+  /* Takes up the image area inside the viewport */
+  position: absolute;
+  top: 6%;
+  left: 6%;
+  right: 6%;
+  bottom: 6%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;          /* clips the zoomed image */
+  cursor: crosshair;
+  border-radius: 12px;
+  z-index: 1;
+}
+
+.carousel-img-wrapper.is-zoomed {
+  cursor: zoom-in;
+}
+
+/* ─── Main Image ─────────────────────────────────────────────────────────── */
+.carousel-main-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* ─── Discount Tag ───────────────────────────────────────────────────────── */
+.carousel-discount-tag {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  background: var(--shop-error, #ef4444);
+  color: #ffffff;
+  padding: 5px 11px;
+  border-radius: 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* ─── Zoom Hint ──────────────────────────────────────────────────────────── */
+.carousel-zoom-hint {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 20px;
+  pointer-events: none;
+  transition: opacity 0.25s;
+  z-index: 10;
+}
+
+.carousel-zoom-hint.hidden {
+  opacity: 0;
+}
+
+/* ─── Counter Badge ──────────────────────────────────────────────────────── */
+.carousel-counter {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ─── Prev / Next Arrows ─────────────────────────────────────────────────── */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.2s, background 0.2s, transform 0.2s;
+}
+
+.carousel-viewport:hover .carousel-arrow {
+  opacity: 1;
+}
+
+.carousel-arrow--prev {
+  left: 14px;
+}
+
+.carousel-arrow--next {
+  right: 14px;
+}
+
+.carousel-arrow:hover {
+  background: rgba(0, 0, 0, 0.65);
+  transform: translateY(-50%) scale(1.08);
+}
+
+/* ─── Dot Indicators ─────────────────────────────────────────────────────── */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+}
+
+.carousel-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: none;
+  background: var(--shop-border);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s, width 0.25s;
+}
+
+.carousel-dot.active {
+  background: var(--shop-accent);
+  width: 22px;
+  border-radius: 4px;
+  transform: none;
+}
+
+.carousel-dot:not(.active):hover {
+  background: color-mix(in srgb, var(--shop-accent) 50%, var(--shop-border));
+  transform: scale(1.2);
+}
+
+/* ─── Thumbnail Strip ────────────────────────────────────────────────────── */
+.carousel-thumbnails {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--shop-border) transparent;
+}
+
+.carousel-thumbnails::-webkit-scrollbar {
+  height: 4px;
+}
+
+.carousel-thumbnails::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.carousel-thumbnails::-webkit-scrollbar-thumb {
+  background: var(--shop-border);
+  border-radius: 4px;
+}
+
+.carousel-thumb-btn {
+  flex-shrink: 0;
+  width: 76px;
+  height: 76px;
+  border-radius: 12px;
+  border: 1.5px solid var(--shop-border);
+  background: rgba(255, 255, 255, 0.02);
+  padding: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+}
+
+.carousel-thumb-btn:hover {
+  border-color: color-mix(in srgb, var(--shop-accent) 60%, var(--shop-border));
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.carousel-thumb-btn.active {
+  border-color: var(--shop-accent);
+  box-shadow: 0 0 0 2px var(--shop-accent-glow, rgba(99, 102, 241, 0.25));
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.carousel-thumb-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .carousel-viewport {
+    height: 400px;
+  }
+}
+
+@media (max-width: 640px) {
+  .carousel-viewport {
+    height: 300px;
+    border-radius: 16px;
+  }
+
+  .carousel-thumb-btn {
+    width: 60px;
+    height: 60px;
+  }
+
+  .carousel-arrow {
+    width: 34px;
+    height: 34px;
+    opacity: 1; /* always visible on touch */
+  }
+}

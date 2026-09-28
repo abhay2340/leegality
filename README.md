@@ -14,7 +14,7 @@ An Amazon-style product listing and detail app built on the [DummyJSON Products 
 
 ## Setup
 
-Requires **Node.js 18+** and npm.
+Requires **Node.js 20.19+ or 22.12+** (needed by Vite 8) and npm.
 
 ```bash
 npm install

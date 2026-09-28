@@ -1,0 +1,41 @@
+:root {
+  /* Neutral Minimalistic Theme (Exactly 10 reusable colors) */
+  --color-bg: #faf8f5;             /* Warm off-white / sand background */
+  --color-surface: #ffffff;        /* Pure white for cards and layout elements */
+  --color-border: #e8e4dc;         /* Soft warm gray border */
+  --color-primary: #e15a13;        /* Burnt orange / vermilion accent */
+  --color-secondary: #1e1f22;      /* Deep charcoal / dark slate for primary structure */
+  --color-success: #15803d;        /* Muted forest green */
+  --color-warning: #b45309;        /* Warm amber */
+  --color-danger: #b91c1c;         /* Crimson red */
+  --color-text-primary: #1e2022;   /* Deep charcoal body/heading text */
+  --color-text-secondary: #6e6b64; /* Warm stone secondary text */
+
+  /* Helper Accent Glows */
+  --glow-primary: rgba(225, 90, 19, 0.15);
+  --glow-secondary: rgba(30, 31, 34, 0.08);
+  
+  /* Font Family Reset */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
